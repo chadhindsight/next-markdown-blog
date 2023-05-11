@@ -1,33 +1,31 @@
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter'
+import marked from 'marked'
+import Link from 'next/link'
 
 export default function PostPage() {
     return (
-        <div>post</div>
+        <Link>
+
+        </Link>
     )
 }
 
-export async function getStaticPaths() {
-    // Get posts 
-    const files = fs.readdirSync(path.join('posts'))
+export async function getStaticProps({ params: { slug } }) {
+    const markdownWithMeta = fs.readFileSync(
+        path.join('posts', slug + '.md'),
+        'utf-8'
+    )
 
-    const paths = files.map((filename) => ({
-        params: {
-            slug: filename.replace('.md', ''),
+    const { data: frontmatter, content } = matter(markdownWithMeta)
+
+    return {
+        // Next.js will pre-render a page at build time using these props
+        props: {
+            frontmatter,
+            slug,
+            content,
         },
-    }))
-
-    return {
-        // array of accessible paths
-        paths,
-        fallback: false,
-    }
-
-}
-// Next.js will pre-render a page at build time using these props
-export async function getStaticProps() {
-    return {
-        props: {},
     }
 }
-
