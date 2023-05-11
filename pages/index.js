@@ -27,7 +27,7 @@ export async function getStaticProps() {
 
   // Get slug and frontmatter from posts
   const posts = files.map((filename) => {
-    // Create slug
+    // This creates a slug
     const slug = filename.replace('.md', '')
 
     // Get frontmatter
