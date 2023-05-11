@@ -6,8 +6,8 @@ import Link from 'next/link'
 
 export default function PostPage() {
     return (
-        <Link>
-
+        <Link href="/">
+            <a className='btn btn-back'>Go Back</a>
         </Link>
     )
 }
