@@ -11,7 +11,7 @@ export default function PostPage() {
         </Link>
     )
 }
-// bare gyal
+
 export async function getStaticProps({ params: { slug } }) {
     const markdownWithMeta = fs.readFileSync(
         path.join('posts', slug + '.md'),
