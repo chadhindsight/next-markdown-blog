@@ -21,7 +21,7 @@ export async function getStaticProps({ params: { slug } }) {
     const { data: frontmatter, content } = matter(markdownWithMeta)
 
     return {
-        // Next.js will pre-render a page at build time using these props
+        // Next.js pre-renders a page at build time using these props
         props: {
             frontmatter,
             slug,
