@@ -13,6 +13,7 @@ export default function PostPage() {
             <div className='card card-page'>
                 <h1 className='post-title'>{title}</h1>
                 <div className='post-date'>Posted on {date}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={cover_image} alt='Related visual aid for the article' />
                     <div className='post-body'>
                         <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
