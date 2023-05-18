@@ -1,10 +1,12 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-export const Post = ({ post }) => {
+export default function Post({ post }) {
     return (
         <div className='card'>
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.frontmatter.cover_image} alt='some shit' />
+            <img src={post.frontmatter.cover_image} alt='' />
+
             <div className='post-date'>Posted on {post.frontmatter.date}</div>
 
             <h3>{post.frontmatter.title}</h3>
@@ -15,5 +17,5 @@ export const Post = ({ post }) => {
                 <a className='btn'>Read More</a>
             </Link>
         </div>
-    );
+    )
 }

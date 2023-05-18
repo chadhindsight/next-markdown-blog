@@ -1,18 +1,43 @@
 import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter'
+import marked from 'marked'
+import Link from 'next/link'
 
 export default function PostPage() {
     return (
-        <div>post</div>
+        <>
+            <Link href="/">
+                <a className='btn btn-back'>Go Back</a>
+            </Link>
+            <div className='card card-page'>
+                <h1 className='post-title'>{title}</h1>
+                <div className='post-date'>Posted on {date}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={cover_image} alt='Related visual aid for the article' />
+                    <div className='post-body'>
+                        <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 
+export async function getStaticProps({ params: { slug } }) {
+    const markdownWithMeta = fs.readFileSync(
+        path.join('posts', slug + '.md'),
+        'utf-8'
+    )
 
-export async function getStaticProps() {
-}
+    const { data: frontmatter, content } = matter(markdownWithMeta)
 
-
-export async function getStaticPaths() {
     return {
-        props: {},
+        // Next.js pre-renders a page at build time using these props
+        props: {
+            frontmatter,
+            slug,
+            content,
+        },
     }
 }
