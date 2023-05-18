@@ -6,9 +6,15 @@ import Link from 'next/link'
 
 export default function PostPage() {
     return (
-        <Link href="/">
-            <a className='btn btn-back'>Go Back</a>
-        </Link>
+        <>
+            <Link href="/">
+                <a className='btn btn-back'>Go Back</a>
+            </Link>
+            <div className='card card-page'>
+                <h1 className='post-title'>{title}</h1>
+                <div className='post-date'>Posted on {date}</div>
+            </div>
+        </>
     )
 }
 
