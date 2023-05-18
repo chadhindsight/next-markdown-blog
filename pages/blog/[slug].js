@@ -12,7 +12,12 @@ export default function PostPage() {
             </Link>
             <div className='card card-page'>
                 <h1 className='post-title'>{title}</h1>
-                <div className='post-date'>Posted on {date}</div>
+                <div className='post-date'>Posted on {date}
+                    <img src={cover_image} alt='Related visual aid for the article' />
+                    <div className='post-body'>
+                        <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+                    </div>
+                </div>
             </div>
         </>
     )
